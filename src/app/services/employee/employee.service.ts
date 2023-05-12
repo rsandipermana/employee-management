@@ -17,4 +17,10 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this.employeesUrl);
   }
 
+  postLogin(username: string, password: string): Observable<Employee | undefined> {
+    return this.http.get<Employee[]>(this.employeesUrl)
+      .pipe(
+        map(employees => employees.find(e => e.username === username && e.password === password))
+      );
+  }
 }

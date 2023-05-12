@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginatePipe } from "./pipes/paginate/paginate.pipe";
 import { SearchComponent } from './components/inputs/search/search.component';
+import { TextComponent } from './components/inputs/text/text.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchComponent } from './components/inputs/search/search.component';
     DetailComponent,
     HeaderComponent,
     PaginatePipe,
-    SearchComponent
+    SearchComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,

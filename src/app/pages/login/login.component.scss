@@ -1,32 +1,9 @@
 $primary: #d33f8d;
 
 .login-card {
-  border-radius: 70px;
+  border-radius: 25 px;
 }
 
 form {
   border-top: 3px solid $primary;
-  .form-group {
-    padding-bottom: 15px;
-    .form-control {
-      border-radius: 0 !important;
-      font-family: 'Lato', sans-serif;
-      border: none;
-      font-size: 20px;
-      border-bottom: 1px solid grey;
-      transition: all .2s;
-      background: transparent;
-      &:focus {
-        font-weight: 900;
-        border-width: 2px;
-        border-image: linear-gradient(to right, $primary,black);
-        border-image-slice: 1;
-        box-shadow: none;
-      }
-    }
-    .form-label {
-      font-weight: 300;
-      margin-bottom: 0;
-    }
-  }
 }

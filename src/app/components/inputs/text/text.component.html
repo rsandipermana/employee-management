@@ -1,0 +1,13 @@
+
+<div class="form-group">
+  <label for="{{ name }}" class="form-label">{{ label }}</label>
+  <input
+    class="form-control"
+    [type]="type"
+    [name]="name"
+    [placeholder]="placeholder"
+    [(ngModel)]="value"
+    (ngModelChange)="valueChange.emit($event)"
+    required
+    />
+</div>

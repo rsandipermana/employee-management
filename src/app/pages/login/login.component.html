@@ -11,34 +11,12 @@
               </div>
               <form
                 class="p-5"
-                #f="ngForm"
-                (ngSubmit)="onSubmit(f)"
+                (ngSubmit)="onSubmit()"
                 novalidate
               >
               <h1 class="">Login</h1>
-                <div class="form-group">
-                  <label for="username" class="form-label">Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    aria-describedby="usernameHelp"
-                    placeholder="Enter username"
-                    name="username"
-                    ngModel
-                    required
-                    #username="ngModel"
-                    />
-                </div>
-                <div class="form-group">
-                  <label for="password" class="form-label">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Enter password"
-                    name="password"
-                    ngModel
-                  />
-                </div>
+                <input-text placeholder="Enter Username" label="Username" [(value)]="username"></input-text>
+                <input-text type="password" placeholder="Enter Password" label="Password" [(value)]="password"></input-text>
                 <button type="submit" class="btn btn-lg btn-primary text-white rounded-0 px-5 my-3">Sign in</button>
               </form>
         </div>

@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
       .subscribe(employees => {
         this.employees = employees;
         this.filteredEmployees = employees;
-        console.log(employees);
+        this.applyFiltered();
       });
   }
 
@@ -39,7 +39,6 @@ export class ListComponent implements OnInit {
 
   onPageSizeChange(pageSize: number): void {
     this.pageSize = pageSize;
-    this.currentPage = 1;
   }
 
   onSortChange(sortDirection: string): void {
