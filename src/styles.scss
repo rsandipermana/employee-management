@@ -1,0 +1,19 @@
+// Import the Lato font
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+// Override the default sans-serif font in Bootstrap
+$font-family-sans-serif: 'Lato', sans-serif !default;
+$primary: #d33f8d;
+$dark: #250214;
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  h1 {
+    font-weight: 900;
+    padding-bottom: 25px;
+    text-align: left;
+  }
+}
+
+// Import the Bootstrap styles
+@import '~bootstrap/scss/bootstrap';

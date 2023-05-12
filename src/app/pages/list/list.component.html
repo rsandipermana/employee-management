@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="bg-white p-5">
+    <h1 class="mb-3">Employee List</h1>
+
+    <div class="row mb-3">
+      <div class="col-6">
+        <div class="form-group">
+          <label class="form-label" for="search">Search:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="search"
+            placeholder="Search employees..."
+            [(ngModel)]="searchKeyword"
+            (ngModelChange)="onSearchChange($event)"
+          />
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label class="form-label" for="pageSizeSelect">Page Size:</label>
+          <select
+            class="form-control"
+            id="pageSizeSelect"
+            [(ngModel)]="pageSize"
+            (ngModelChange)="onPageSizeChange($event.target.value)"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="d-flex justify-content-end">
+          <!-- <app-pagination [totalItems]="filteredEmployees.length" [pageSize]="pageSize" (pageChange)="onPageChange($event)" (pageSizeChange)="onPageSizeChange($event)"></app-pagination> -->
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">
+            Name
+            <i class="fas fa-sort-up"></i>
+          </th>
+          <th scope="col">Email</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let employee of filteredEmployees
+              | paginate : { itemsPerPage: pageSize, currentPage: currentPage }
+          "
+        >
+          <th scope="row">{{ (currentPage - 1) * pageSize + 1 }}</th>
+          <td>{{ employee.firstName + " " + employee.lastName }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.status }}</td>
+          <td>
+            <!-- <button class="btn btn-primary btn-sm mr-2" (click)="editEmployee(employee)">Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee)">Delete</button> -->
+          </td>
+        </tr>
+        <tr *ngIf="employees.length === 0">
+          <td colspan="5" class="text-center">No employees found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

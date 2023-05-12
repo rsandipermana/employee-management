@@ -1,0 +1,47 @@
+<div class="container-fluid d-flex flex-column justify-content-center " style="min-height: 100vh;">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="bg-white shadow-lg login-card">
+              <div class="bg-light d-flex justify-content-center align-items-center">
+                <img
+                  src="assets/logo-sandi.svg"
+                  class="img-fluid w-50 py-5"
+                  alt="Login Image"
+                />
+              </div>
+              <form
+                class="p-5"
+                #f="ngForm"
+                (ngSubmit)="onSubmit(f)"
+                novalidate
+              >
+              <h1 class="">Login</h1>
+                <div class="form-group">
+                  <label for="username" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-describedby="usernameHelp"
+                    placeholder="Enter username"
+                    name="username"
+                    ngModel
+                    required
+                    #username="ngModel"
+                    />
+                </div>
+                <div class="form-group">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Enter password"
+                    name="password"
+                    ngModel
+                  />
+                </div>
+                <button type="submit" class="btn btn-lg btn-primary text-white rounded-0 px-5 my-3">Sign in</button>
+              </form>
+        </div>
+      </div>
+    </div>
+</div>

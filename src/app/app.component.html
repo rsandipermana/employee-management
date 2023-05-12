@@ -1,0 +1,10 @@
+<div class="background">
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="message" class="alert alert-{{message.type}} fade" [ngClass]="{'show': message}" role="alert">
+  <div>{{message.text}}</div>
+  <button class="btn btn-sm btn-danger" aria-label="Close" (click)="closeAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

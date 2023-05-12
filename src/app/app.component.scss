@@ -1,0 +1,37 @@
+.alert {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateY(50%) translateX(-50%);
+  z-index: 9999;
+  border-radius: 0;
+  text-align: center;
+  opacity: 0;
+  background: transparent;
+  transition: all .3s;
+
+  &.alert-success {
+    opacity: 1;
+    background: #28a745;
+    color: #fff;
+    border-radius: 20px 20px 0 0;
+  }
+
+  &.alert-error {
+    opacity: 1;
+    background: #930c47;
+    color: #fff;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+$image-path: '../assets/bg.jpeg';
+$image-height: 100vh;
+
+.background {
+  background-image: url($image-path);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: $image-height;
+}
