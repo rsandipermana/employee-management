@@ -13,12 +13,13 @@ export class ListComponent implements OnInit {
   filteredEmployees: Employee[] = [];
   currentPage: number = 1;
   pageSize: number = 10;
+  sortKey: string = 'firstName';
   sortDirection: string = 'asc';
   searchKeyword: string = '';
 
   constructor(private employeeService: EmployeeService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getEmployees();
   }
 
@@ -33,6 +34,7 @@ export class ListComponent implements OnInit {
 
   onPageChange(pageNumber: number): void {
     this.currentPage = pageNumber;
+    this.applyFiltered()
   }
 
   onPageSizeChange(pageSize: number): void {
@@ -46,10 +48,26 @@ export class ListComponent implements OnInit {
 
   onSearchChange(searchKeyword: string): void {
     this.searchKeyword = searchKeyword.toLowerCase();
-    this.currentPage = 1;
-    this.filteredEmployees = this.employees.filter(employee =>
-      (employee.username + employee.firstName + employee.lastName + employee.email).toLowerCase().includes(this.searchKeyword)
-    );
+    this.applyFiltered()
+  }
+
+  applyFiltered(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+
+    this.filteredEmployees = this.employees.filter(employee => {
+      return (employee.username + employee.firstName + employee.lastName + employee.email).toLowerCase().includes(this.searchKeyword)
+    })
+    .sort((a: Employee, b: Employee) => {
+      if (a[this.sortKey] < b[this.sortKey]) {
+        return this.sortDirection === 'asc' ? -1 : 1;
+      }
+      if (a[this.sortKey] > b[this.sortKey]) {
+        return this.sortDirection === 'asc' ? 1 : -1;
+      }
+      return 0;
+    })
+    .slice(startIndex, endIndex);
   }
 
   deleteEmployee(employee: Employee): void {

@@ -9,4 +9,5 @@ export interface Employee {
   status: string;
   group: string;
   description: Date;
+  [key: string]: any;
 }
