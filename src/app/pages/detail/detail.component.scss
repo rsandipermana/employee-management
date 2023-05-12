@@ -1,0 +1,14 @@
+.form-control, .input-group-text {
+  font-size: 15pt;
+  box-shadow: none;
+  border-width: 2px;
+  border-image: linear-gradient(to right, black,black);
+  border-image-slice: 1;
+  margin-bottom: 15px;
+  transition: all .5s;
+  &:focus {
+    border-width: 2px;
+    border-image: linear-gradient(to right, #d33f8d,black);
+    border-image-slice: 1;
+  }
+}

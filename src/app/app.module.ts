@@ -8,11 +8,13 @@ import { ListComponent } from './pages/list/list.component';
 import { AddComponent } from './pages/add/add.component';
 import { DetailComponent } from './pages/detail/detail.component';
 import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginatePipe } from "./pipes/paginate/paginate.pipe";
 import { SearchComponent } from './components/inputs/search/search.component';
 import { TextComponent } from './components/inputs/text/text.component';
+import { CurrencyPipe } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -31,8 +33,9 @@ import { TextComponent } from './components/inputs/text/text.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

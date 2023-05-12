@@ -1,1 +1,52 @@
-<p>add works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="bg-white p-5">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 class="mb-3">Detail Employee</h1>
+          <button class="btn btn-primary btn-sm  rounded-0 mr-2">Back</button>
+        </div>
+        <div class="p-3">
+          <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" formControlName="email" required>
+            </div>
+            <div class="form-group">
+              <label for="basicSalary">Basic Salary</label>
+              <input type="number" class="form-control" id="basicSalary" name="basicSalary" formControlName="basicSalary" required>
+            </div>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select class="form-control" id="status" name="status" formControlName="status" required>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="group">Group</label>
+              <input type="text" class="form-control" id="group" name="group" formControlName="group" required>
+            </div>
+            <div class="form-group">
+              <label for="birthDate">Birth Date</label>
+              <input type="date" class="form-control" id="birthDate" name="birthDate" formControlName="birthDate" required>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" name="description" formControlName="description" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

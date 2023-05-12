@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { Employee } from '../../interfaces/employee.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -19,7 +20,7 @@ export class ListComponent implements OnInit {
   sortDirection: string = 'asc';
   searchKeyword: string = '';
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private router: Router) { }
 
   ngOnInit(): void {
     this.getEmployees();
@@ -34,21 +35,27 @@ export class ListComponent implements OnInit {
       });
   }
 
-  onPageChange(pageNumber: number): void {
-    this.currentPage = pageNumber;
+  onPageChange(currentPage: number): void {
+    this.currentPage = currentPage;
+    localStorage.setItem('currentPage', currentPage.toString());
     this.applyFiltered()
   }
 
   onPageSizeChange(pageSize: number): void {
     this.pageSize = pageSize;
+    localStorage.setItem('pageSize', pageSize.toString());
+    this.applyFiltered()
   }
 
   onSortChange(sortDirection: string): void {
     this.sortDirection = sortDirection;
+    localStorage.setItem('sortDirection', (sortDirection));
+    this.applyFiltered()
   }
 
   onSearchChange(searchKeyword: string): void {
     this.searchKeyword = searchKeyword.toLowerCase();
+    localStorage.setItem('searchKeyword', (this.searchKeyword));
     this.applyFiltered()
   }
 
@@ -59,6 +66,8 @@ export class ListComponent implements OnInit {
       this.sortDirection = 'asc';
       this.sortKey = columnName;
     }
+    localStorage.setItem('sortDirection', (this.sortDirection));
+    localStorage.setItem('sortKey', (this.sortKey));
     this.applyFiltered()
   }
 
@@ -84,12 +93,10 @@ export class ListComponent implements OnInit {
   }
 
   deleteEmployee(employee: Employee): void {
-    // implement delete logic
     console.log('Deleted employee:', employee);
   }
 
   editEmployee(employee: Employee): void {
-    // implement edit logic
-    console.log('Edited employee:', employee);
+    this.router.navigate(['/detail', employee.guid]);
   }
 }

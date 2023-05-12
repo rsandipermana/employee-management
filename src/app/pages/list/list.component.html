@@ -13,7 +13,7 @@
             class="form-control"
             id="pageSizeSelect"
             [(ngModel)]="pageSize"
-            (ngModelChange)="applyFiltered()"
+            (ngModelChange)="onPageSizeChange($event)"
           >
             <option value="5">5</option>
             <option value="10">10</option>
