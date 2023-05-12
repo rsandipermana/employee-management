@@ -4,17 +4,7 @@
 
     <div class="row mb-3">
       <div class="col-6">
-        <div class="form-group">
-          <label class="form-label" for="search">Search:</label>
-          <input
-            type="text"
-            class="form-control"
-            id="search"
-            placeholder="Search employees..."
-            [(ngModel)]="searchKeyword"
-            (ngModelChange)="onSearchChange($event)"
-          />
-        </div>
+        <input-search (keyword)="onSearchChange($event)"></input-search>
       </div>
       <div class="col-6">
         <div class="form-group">

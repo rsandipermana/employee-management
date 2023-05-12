@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label class="form-label" for="search">Search:</label>
+  <input
+    type="text"
+    class="form-control"
+    id="search"
+    placeholder="Search employees..."
+    [(ngModel)]="searchValue"
+    (ngModelChange)="onSearchChange()"
+  />
+</div>

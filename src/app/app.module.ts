@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { PaginatePipe } from "./pipes/paginate/paginate.pipe";
+import { SearchComponent } from './components/inputs/search/search.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PaginatePipe } from "./pipes/paginate/paginate.pipe";
     AddComponent,
     DetailComponent,
     HeaderComponent,
-    PaginatePipe
+    PaginatePipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
