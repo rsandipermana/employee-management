@@ -4,11 +4,13 @@ import { AuthGuard } from "./guards/auth.guard";
 import { LoginComponent } from "./pages/login/login.component";
 import { ListComponent } from "./pages/list/list.component";
 import { DetailComponent } from "./pages/detail/detail.component";
+import { AddComponent } from "./pages/add/add.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'list', component: ListComponent, canActivate: [AuthGuard] },
   { path: 'detail/:guid', component: DetailComponent, canActivate: [AuthGuard] },
+  { path: 'add', component: AddComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: '**', redirectTo: '/list', pathMatch: 'full' }
 ];
