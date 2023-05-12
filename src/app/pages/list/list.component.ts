@@ -12,6 +12,8 @@ export class ListComponent implements OnInit {
   employees: Employee[] = [];
   filteredEmployees: Employee[] = [];
   currentPage: number = 1;
+  totalPages: number = 1;
+  pages: number[] = [];
   pageSize: number = 10;
   sortKey: string = 'firstName';
   sortDirection: string = 'asc';
@@ -50,6 +52,16 @@ export class ListComponent implements OnInit {
     this.applyFiltered()
   }
 
+  sortTable(columnName: string) {
+    if (columnName === this.sortKey) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortDirection = 'asc';
+      this.sortKey = columnName;
+    }
+    this.applyFiltered()
+  }
+
   applyFiltered(): void {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
@@ -66,7 +78,9 @@ export class ListComponent implements OnInit {
       }
       return 0;
     })
-    .slice(startIndex, endIndex);
+    this.totalPages = Math.ceil(this.filteredEmployees.length / this.pageSize);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    this.filteredEmployees = this.filteredEmployees.slice(startIndex, endIndex);
   }
 
   deleteEmployee(employee: Employee): void {

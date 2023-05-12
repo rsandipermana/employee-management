@@ -34,4 +34,5 @@ $image-height: 100vh;
   background-repeat: no-repeat;
   background-position: center center;
   min-height: $image-height;
+  background-attachment: fixed;
 }

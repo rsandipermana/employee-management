@@ -22,3 +22,8 @@ $primary: #d33f8d;
     margin-bottom: 0;
   }
 }
+th {
+  &:hover {
+    cursor: pointer;
+  }
+}

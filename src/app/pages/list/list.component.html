@@ -1,12 +1,12 @@
 <div class="container">
   <div class="bg-white p-5">
-    <h1 class="mb-3">Employee List</h1>
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="mb-3">Employee List</h1>
+      <button class="btn btn-primary btn-sm  rounded-0 mr-2">Add</button>
+    </div>
 
     <div class="row mb-3">
-      <div class="col-6">
-        <input-search (keyword)="onSearchChange($event)"></input-search>
-      </div>
-      <div class="col-6">
+      <div class="col-md-4">
         <div class="form-group">
           <label class="form-label" for="pageSizeSelect">Page Size:</label>
           <select
@@ -23,44 +23,75 @@
           </select>
         </div>
       </div>
-      <div class="col-6">
-        <div class="d-flex justify-content-end">
-          <!-- <app-pagination [totalItems]="filteredEmployees.length" [pageSize]="pageSize" (pageChange)="onPageChange($event)" (pageSizeChange)="onPageSizeChange($event)"></app-pagination> -->
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <input-search (keyword)="onSearchChange($event)"></input-search>
+      </div>
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" (click)="sortTable('username')"> Username
+                  <i *ngIf="sortKey === 'username' && sortDirection === 'asc'" class="fa fa-sort-up"></i>
+                  <i *ngIf="sortKey === 'username' && sortDirection === 'desc'" class="fa fa-sort-down"></i>
+                </th>
+                <th scope="col" (click)="sortTable('firstName')"> Name
+                  <i *ngIf="sortKey === 'firstName' && sortDirection === 'asc'" class="fa fa-sort-up"></i>
+                  <i *ngIf="sortKey === 'firstName' && sortDirection === 'desc'" class="fa fa-sort-down"></i>
+                </th>
+                <th scope="col" (click)="sortTable('email')"> Email
+                  <i *ngIf="sortKey === 'email' && sortDirection === 'asc'" class="fa fa-sort-up"></i>
+                  <i *ngIf="sortKey === 'email' && sortDirection === 'desc'" class="fa fa-sort-down"></i>
+                </th>
+                <th scope="col" (click)="sortTable('status')"> Status
+                  <i *ngIf="sortKey === 'status' && sortDirection === 'asc'" class="fa fa-sort-up"></i>
+                  <i *ngIf="sortKey === 'status' && sortDirection === 'desc'" class="fa fa-sort-down"></i>
+                </th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of filteredEmployees; let i = index">
+                <th scope="row">{{ (currentPage - 1) * pageSize + i + 1 }}</th>
+                <td>{{ employee.username }}</td>
+                <td>{{ employee.firstName + " " + employee.lastName }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.status }}</td>
+                <td>
+                  <button class="btn btn-warning rounded-0 btn-sm mr-2" (click)="editEmployee(employee)">Edit</button>
+                  <button class="btn btn-danger rounded-0 btn-sm" (click)="deleteEmployee(employee)">Delete</button>
+                </td>
+              </tr>
+              <tr *ngIf="filteredEmployees.length === 0">
+                <td colspan="5" class="text-center">No employees found.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">
-              Name
-              <i class="fas fa-sort-up"></i>
-            </th>
-            <th scope="col">Email</th>
-            <th scope="col">Status</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let employee of filteredEmployees; let i = index">
-            <th scope="row">{{ (currentPage - 1) * pageSize + i + 1 }}</th>
-            <td>{{ employee.username }}</td>
-            <td>{{ employee.firstName + " " + employee.lastName }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.status }}</td>
-            <td>
-              <button class="btn btn-primary btn-sm mr-2" (click)="editEmployee(employee)">Edit</button>
-              <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee)">Delete</button>
-            </td>
-          </tr>
-          <tr *ngIf="filteredEmployees.length === 0">
-            <td colspan="5" class="text-center">No employees found.</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="col-md-12">
+        <div class="d-flex justify-content-center">
+          <nav aria-label="navigation" class="mt-4">
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="btn rounded-0 page-link" (click)="onPageChange(currentPage - 1)" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+                <a class="btn rounded-0 page-link" (click)="onPageChange(page)">{{ page }}</a>
+              </li>
+              <li class="page-item" [class.disabled]="currentPage === totalPages">
+                <a class="btn rounded-0 page-link" (click)="onPageChange(currentPage + 1)" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </div>
   </div>
 </div>
